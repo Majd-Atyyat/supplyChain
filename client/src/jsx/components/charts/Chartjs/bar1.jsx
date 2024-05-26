@@ -32,7 +32,7 @@ class BarChart1 extends Component {
           data: [65, 59, 80, 81, 56, 55, 40],
           borderColor: "rgba(69, 43, 144, 1)",
           borderWidth: "0",
-          backgroundColor: "rgba(69, 43, 144, 1)",
+          backgroundColor: "rgba(1,144,223, 1)",
 		      barThickness: 40
 		   
         },
@@ -51,7 +51,8 @@ class BarChart1 extends Component {
               beginAtZero: true,
             },
             grid:{
-              color:"rgba(255, 255, 255, 0.1)"
+             
+              color:"rgba(1,144,223, 0.1)"
             }
           },
         
@@ -60,7 +61,7 @@ class BarChart1 extends Component {
             // Change here
             barPercentage: 0.5,
             grid:{
-              color:"rgba(255, 255, 255, 0.1)"
+              color:"rgba(88,189,245, 0.1)"
             }
           },
         

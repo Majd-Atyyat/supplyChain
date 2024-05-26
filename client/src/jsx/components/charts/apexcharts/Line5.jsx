@@ -8,11 +8,11 @@ class ApexLine5 extends React.Component {
     this.state = {
       series: [
         {
-          name: "Recovered Patient",
+          name: "numbers 1 ",
           data: [500, 230, 600, 360, 700, 890, 750, 420, 600, 300, 420, 220],
         },
         {
-          name: "New Patient",
+          name: "number 2",
           data: [250, 380, 200, 300, 200, 520, 380, 770, 250, 520, 300, 900],
         },
       ],

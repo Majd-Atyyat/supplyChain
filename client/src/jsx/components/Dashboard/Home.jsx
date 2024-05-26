@@ -38,7 +38,7 @@ const Home = () => {
 		
 	return(
 		<>			
-			<div className="container-fluid">
+			
 				<div className="row">
 					<div className="col-xl-9 col-xxl-12">
 						<div className="row">
@@ -217,7 +217,7 @@ const Home = () => {
 						</div>
 					</div>
 				</div>			
-			</div>
+			
 		</>
 	)
 }

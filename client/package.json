@@ -36,6 +36,8 @@
     "react-dom": "^18.2.0",
     "react-dropzone-uploader": "^2.11.0",
     "react-form-stepper": "^2.0.3",
+    "react-gauge-chart": "^0.5.1",
+    "react-gauge-component": "^1.2.21",
     "react-highlight": "^0.15.0",
     "react-linear-gradient-picker": "^3.0.1",
     "react-moment": "^1.1.3",

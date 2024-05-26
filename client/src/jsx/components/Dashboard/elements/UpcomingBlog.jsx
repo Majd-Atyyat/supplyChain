@@ -21,26 +21,7 @@ const UpcomingBlog = () => {
                         dateFormat="MM-dd-yyyy"
                         inline
                     />    
-                    <div className="events">
-                        <h6>events</h6>
-                        <div className="dz-scroll event-scroll">
-                            {eventData.map((item, index)=>(
-                                <div className={`event-media ${item.bord}`} key={index}>
-                                    <div className="d-flex align-items-center">
-                                        <div className="event-box">
-                                            <h5 className="mb-0">20</h5>
-                                            <span>Mon</span>
-                                        </div>
-                                        <div className="event-data ms-2">
-                                            <h5 className="mb-0"><Link to={"#"}>{item.title}</Link></h5>
-                                            <span>w3it Technologies</span>
-                                        </div>
-                                    </div>
-                                    <span className="text-secondary">12:05 PM</span>
-                                </div>
-                            ))}                            
-                        </div>	
-                    </div>
+                    
                 </div>
             </div>  
         </>

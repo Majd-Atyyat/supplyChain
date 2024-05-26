@@ -118,7 +118,7 @@ const Header = ({ onNote }) => {
 										<div className="ps__thumb-y" tabIndex={0} style={{ top: 0, height: 0 }}/>
 									</div>
 								</div>
-								<Link to={"/email-inbox"} className="all-notification" >
+								<Link to={"/notifications"} className="all-notification" >
 									See all notifications <i className="ti-arrow-right" />
 								</Link>
 							</Dropdown.Menu>
@@ -251,13 +251,13 @@ const Header = ({ onNote }) => {
 											<div className="products">
 												<img src={IMAGES.User} className="avatar avatar-md" alt="" />
 												<div>
-													<h6>manfacture's Name</h6>
-													<span>manfacture type/role</span>	
+													<h6>admin's Name</h6>
+														
 												</div>	
 											</div>
 										</div>
 										<div className="card-body px-0 py-2">
-											<Link to={"/app-profile"} className="dropdown-item ai-icon ">
+											<Link to={"/edit-profile"} className="dropdown-item ai-icon ">
 												{SVGICON.UserSvg}{" "}
 												<span className="ms-2">Profile </span>
 											</Link>
@@ -269,7 +269,11 @@ const Header = ({ onNote }) => {
 												{SVGICON.Message}{" "}
 												<span className="ms-2">Message </span>
 											</Link> */}
-											<Link to={"/email-inbox"} className="dropdown-item ai-icon ">
+											{/* <Link to={"/email-inbox"} className="dropdown-item ai-icon ">
+												{SVGICON.Notification} {" "}
+												<span className="ms-2">Notification </span>
+											</Link> */}
+											<Link to={"/notifications"} className="dropdown-item ai-icon ">
 												{SVGICON.Notification} {" "}
 												<span className="ms-2">Notification </span>
 											</Link>

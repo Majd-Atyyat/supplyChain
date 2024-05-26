@@ -13,15 +13,15 @@ const  ProjectOverviewChart = (props) =>{
     const chartRef = useRef();
     const  series = [
         {
-            name: 'Number of Projects',
+            name: 'KPI 1',
             type: 'column',
             data: [75, 85, 72, 100, 50, 100, 80, 75, 95, 35, 75,100]
         }, {
-            name: 'Revenue',
+            name: 'KPI 2',
             type: 'area',
             data: [44, 65, 55, 75, 45, 55, 40, 60, 75, 45, 50,42]
         }, {
-            name: 'Active Projects',
+            name: 'KPI 3',
             type: 'line',
             data: [30, 25, 45, 30, 25, 35, 20, 45, 35, 20, 35,20]
         }
@@ -77,29 +77,29 @@ const  ProjectOverviewChart = (props) =>{
                 [
                     {
                       offset: 0,
-                      color: '#3AC977',
+                      color: '#00c799',
                       opacity: 1
                     },
                     {
                       offset: 0.4,
-                      color: '#3AC977',
+                      color: '#00c799',
                       opacity: .15
                     },
                     {
                       offset: 100,
-                      color: '#3AC977',
+                      color: '#00c799',
                       opacity: 0
                     }
                 ],
                 [
                     {
                       offset: 0,
-                      color: '#FF5E5E',
+                      color: '#da436c',
                       opacity: 1
                     },
                     {
                       offset: 100,
-                      color: '#FF5E5E',
+                      color: '#da436c',
                       opacity: 1
                     }
                 ],
@@ -107,7 +107,7 @@ const  ProjectOverviewChart = (props) =>{
             stops: [0, 100, 100, 100]
           }
       },
-      colors:["var(--primary)","#3AC977","#FF5E5E"],
+      colors:["var(--primary)","#00c799","#da436c"],
       labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       markers: {
           size: 0
@@ -177,15 +177,15 @@ const  ProjectOverviewChart = (props) =>{
 			}
 			chartRef.current.chart.ctx.updateSeries([
           {
-            name: "Number of Projects",
+            name: "KPI 1",
             type: 'column',
             data: columnData
           },{
-            name: 'Revenue',
+            name: 'KPI 2',
             type: 'area',
             data: areaData
           },{
-            name: 'Active Projects',
+            name: 'KPI 3',
             type: 'line',
             data: lineData
           }
@@ -196,7 +196,7 @@ const  ProjectOverviewChart = (props) =>{
       <>
           <Tab.Container defaultActiveKey={'Week'}>
             <div className="card-header border-0 pb-0 flex-wrap">
-                <h4 className="heading mb-0">Projects Overview</h4>                
+                <h4 className="heading mb-0">KPI's Overview</h4>                
                   <Nav as="ul" className="nav nav-pills mix-chart-tab">
                       {chartHeaderData.map((item, index)=>(
                         <Nav.Item as="li" className="nav-item" key={index}>
@@ -220,19 +220,19 @@ const  ProjectOverviewChart = (props) =>{
                 <div className="ttl-project">
                     <div className="pr-data">
                         <h5>12,721</h5>
-                        <span>Number of Projects</span>
+                        <span>summry</span>
                     </div>
                     <div className="pr-data">
                         <h5 className="text-primary">721</h5>
-                        <span>Active Projects</span>
+                        <span>summary 2</span>
                     </div>
                     <div className="pr-data">
                         <h5>$2,50,523</h5>
-                        <span>Revenue</span>
+                        <span>summary 3</span>
                     </div>
                     <div className="pr-data">
-                        <h5 className="text-success">12,275h</h5>
-                        <span>Working Hours</span>
+                        <h5 className="text-success">12,275</h5>
+                        <span>summary 4</span>
                     </div>
                 </div>
             </div>

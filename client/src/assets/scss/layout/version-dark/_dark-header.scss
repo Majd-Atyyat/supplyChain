@@ -17,14 +17,14 @@
     }
 	.search-area{
 		.form-control{
-			background: #4C659F;
+			background: #525252;
 			&::placeholder{
 				color:$white;
 			}
 		}
 		.input-group-text{
 			border:0;
-			background:#4C659F;
+			background:#525252;
 			a{
 				color:white;
 			}
@@ -46,7 +46,7 @@
 		}
         .dropdown {
             .nav-link {
-				background:#4C659F;	
+				background:#525252;	
 				color: $white;
                 &:hover {
                     color: $white;

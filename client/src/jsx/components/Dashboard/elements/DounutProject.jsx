@@ -51,7 +51,7 @@ class DounutProject extends React.Component {
             legend: {
                 show: false,
             },
-            colors: ['#3AC977', 'var(--primary)', 'var(--secondary)'],
+            colors: ['#00c799', 'var(--primary)', 'var(--secondary)'],
             labels: ["Compete", "Pending", "Not Start"],
             dataLabels: {
                 enabled: false,

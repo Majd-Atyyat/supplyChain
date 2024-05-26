@@ -34,7 +34,7 @@ const  RevenueChart = () => {
               filter: 'none',
             }
         },
-        colors:['#FFFFFF', '#222B40'],
+        colors:['#FFFFFF', '#000000'],
         dataLabels: {
             enabled: false,
             offsetY: -30

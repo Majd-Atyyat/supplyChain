@@ -1073,7 +1073,7 @@
 		color:$white;
 	}
 	.active-projects thead tr th{
-		background: #202A41;
+		background: #00023d;
 	}
 	.media-data span{
 		color: #fff;
@@ -1186,7 +1186,7 @@
 	}
 	.mix-chart-tab{
 		.nav-link{
-			background:#202A41;
+			background:#00023d;
 			color:$white;
 			&.active{
 				background:var(--primary);
@@ -1220,7 +1220,7 @@
 	.task .task-summary span{
 		color: $white;
 	}
-	--primary:#8869e1;
+	--primary:#0190df;
 	.alert{
 		.btn-close{
 			background: none;

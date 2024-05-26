@@ -41,7 +41,7 @@ const Products = () => {
             <div className="row">
                 <div className="col-xl-12">
                     <div className="row">
-                        {iconBoxCard.map((item, index)=>(
+                        {/* {iconBoxCard.map((item, index)=>(
                             <div className="col-xl-3 col-sm-6" key={index}>
                                 <div className="card box-hover">
                                     <div className="card-body">
@@ -57,7 +57,7 @@ const Products = () => {
                                     </div>
                                 </div>
                             </div>
-                        ))}
+                        ))} */}
                         <div className="col-xl-6">		
                             <div className="card">
                                 <div className="card-body p-0">

@@ -1,14 +1,90 @@
-import React from 'react';
+import React, { Fragment } from "react";
+import {useContext, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import loadable from "@loadable/component";
 import pMinDelay from "p-min-delay";
-
+import GaugeChartComponent from '../charts/gurage/GaugeChartComponent';
+import BarChart1 from "../charts/Chartjs/bar1";
+import { ThemeContext } from "../../../context/ThemeContext";
 import { IMAGES, SVGICON } from '../../constant/theme';
 import DounutProject from './elements/DounutProject';
 import TrafficDonutChart from './elements/TrafficDonutChart';
 import CrmMarketArea from './elements/CrmMarketArea';
 import CrmExtranalChart from './elements/CrmExtranalChart';
 import CrmYearlyIncome from './elements/CrmYearlyIncome';
+
+import SalesActiveBar from './elements/SalesActiveBar';
+import SalesAvgArea from './elements/SalesAvgArea';
+import ActiveSubscriptions from './elements/ActiveSubscriptions';
+import SalesOverviewBar from './elements/SalesOverviewBar';
+
+import ProductSellerTable from './elements/ProductSellerTable';
+
+import SalesStatisticsArea from './elements/SalesStatisticsArea';
+import { Row, Col, Card } from "react-bootstrap";
+
+import SocialNetworkRadialChart from '../Dashboard/elements/SocialNetworkRadialChart';
+
+import ProjectOverviewTab from '../Dashboard/elements/ProjectOverviewTab';
+import ActiveProjects from '../Dashboard/elements/ActiveProjects';
+import RevenueHistoryTable from '../Dashboard/elements/RevenueHistoryTable';
+// BS
+import { Dropdown, Nav, Tab } from "react-bootstrap";
+/// Scroll
+
+
+// images
+// import avatar1 from "../../assets/images/avatar/1.jpg";
+
+import PageTitle from "../../layouts/PageTitle";
+const cardBlog = [
+  {svg:SVGICON.UserSvgGreen, number:'5,652', title:'Kpi 1', changetheme:'success'},
+  {svg:SVGICON.CardProgress, number:'585', title:'kpi 2', changetheme:'primary'},
+  {svg:SVGICON.ShiledPrimary, number:'5,282', title:'kpi 3', changetheme:'purple'},
+  {svg:SVGICON.UserThree, number:'123', title:'kpi 4', changetheme:'danger'},
+];
+
+const coloumnBlog = [
+  {title:'Avg Subscriptions', subtitle:'month', charts: <SalesAvgArea />,  bg:'primary'},
+  {title:'Active Subscriptions', subtitle:'week', charts:  <ActiveSubscriptions />, bg:'secondary'},
+];
+const smallCard = [
+  {title:'Target', price:'55', icon:'up', color:'success'},
+  {title:'Last week', price:'15', icon:'down', color:'danger'},
+  {title:'Last Year', price:'85', icon:'up', color:'success'},
+];
+
+const ApexLine = loadable(() => pMinDelay(import("../../components/charts/apexcharts/Line3"), 1000));
+
+const iconBoxCard = [
+    {icon:'fa-solid fa-briefcase', bg:'success', number:'200+', title:'Total Projects'},
+    {icon:'fa-solid fa-cart-shopping', bg:'primary', number:'1560', title:'Total Orders'},
+    {icon:'fa-solid fa-users ', bg:'secondary', number:'400', title:'Total User'},
+    {icon:'fa-solid fa-hand-holding-dollar', bg:'danger', number:'$1500', title:'Total Sales'},
+];
+
+const sourceTable = [
+    {icon:'fa-brands fa-google', name:'Google', visit:'25,655', page:'1,255', revenue:'9555', trend:'60%', bg:'secondary'},
+    {icon:'fa-brands fa-linkedin-in', name:'Linkedin', visit:'55,655', page:'3,100', revenue:'8855', trend:'30%', bg:'info'},
+    {icon:'fa-brands fa-facebook-f', name:'Facebook', visit:'25,255', page:'1,205', revenue:'1955', trend:'50%', bg:'primary'},
+    {icon:'fa-brands fa-instagram', name:'Daniel Arran', visit:'42,655', page:'2,999', revenue:'9855', trend:'80%', bg:'secondary'},
+    {icon:'fa-brands fa-linkedin-in', name:'Linkedin', visit:'55,655', page:'3,100', revenue:'8855', trend:'30%', bg:'info'},
+];
+
+const newproductList = [
+    {name:'Air Conditioner', image: IMAGES.ac, price:'999'},
+    {name:'Bag Pack', image: IMAGES.beg, price:'101'},
+    {name:'Dress', image: IMAGES.dress, price:'235'},
+    {name:'Jacket', image: IMAGES.jacket, price:'456'},
+    {name:'Air Conditioner', image:IMAGES.ac, price:'999'},
+];
+const topsellinglist = [
+    {name:'Air Conditioner', image: IMAGES.ac, price:'999', sold:'55', revenue:'5,956'},
+    {name:'Bag Pack', image: IMAGES.beg, price:'101', sold:'485', revenue:'3,156'},
+    {name:'Dress', image: IMAGES.dress, price:'235', sold:'1200', revenue:'4,654'},
+    {name:'Jacket', image: IMAGES.jacket, price:'456', sold:'301', revenue:'2,923'},
+    {name:'Air Conditioner', image:IMAGES.ac, price:'999', sold:'236', revenue:'1,956'},
+];
 
 const CrmColumnChart = loadable(() =>
 	pMinDelay(import("./elements/CrmColumnChart"), 1000)
@@ -59,219 +135,521 @@ const tableList = [
     {name:'Master Card', amount:'756', total:'1,1256'},
     {name:'Visa Card', amount:'3.4125', total:'5,1236'}
 ];
+
+const cardList =[
+    {icon:'fas fa-sitemap', title:'Supplier Diversification Index', subtitle:'@SDI', number:'18.2',},
+    {icon:'fas fa-exchange-alt', title:'Inventory Turnover Rate', subtitle:'@ITR', number:'33%',},
+    {icon:'fas fa-clock', title:'Sales Lead Time Variability', subtitle:'@whatever', number:'-13',},
+    {icon:'fas fa-thumbs-up', title:'Customer Satisfaction Index', subtitle:'@IDK', number:'+25',},
+    {icon:'fas fa-chart-line', title:'Labor  Productivity', subtitle:'@lorem', number:'+32',},
+    {icon:'fa-solid fa-map', title:'Map', subtitle:'@lorem', number:'-08',},
+
+    
+];
+const salesblog = [
+  {title:'Orders', subtitle:'3,123'},
+  {title:'Month', subtitle:'4,248'},
+  {title:'Year', subtitle:'7,654'},
+  {title:'Profit', subtitle:'2,545'},
+];
 const Crm = () => {
+	const { changeBackground } = useContext(ThemeContext);	
+	useEffect(() => {
+		changeBackground({ value: "dark", label: "Dark" });
+	}, []);
     return (
+
+    
         <div className="container-fluid">
-            <div className="row">
-                <div className="col-xl-4 col-xxl-3 col-sm-6">
-                    <div className="card overflow-hidden">
-                        <div className="card-body">
-                            <div className="c-con">
-                                <h4 className="heading mb-0">Congratulations <strong>Hanu!!</strong><img src={IMAGES.popper} alt="" /></h4>
-                                <span>Best seller of the week</span>
-                            </div>
-                            <div className="c-con-3d">
-                                <div className="c-con-prise">
-                                    <h3 className="mb-0 text-primary">$43.9k</h3>
-                                    <span className="d-block mb-2">98% of target 🧡 </span>
-                                    <Link to={"#"} className="btn btn-primary btn-sm">View Sale</Link>
-                                </div>
-                                <img src={IMAGES.object} alt="" />
-                            </div>	
-                        </div>
-                    </div>
-                </div>
-                <div className="col-xl-2 col-xxl-3 col-sm-6">
-                    <div className="card crm-cart bg-secondary border-0">
-                        <div className="card-header border-0 pb-0">
-                            <span className="text-white fs-16">+38%<i className="fa-solid fa-chevron-up ms-1"></i></span>
-                            <div className="icon-box bg-white">
-                                {SVGICON.Doller}
-                            </div>
-                        </div>
-                        <div className="card-body">
-                            <div className="crm-cart-data">
-                                <p>252$</p>
-                                <span className="d-block mb-3 text-black">Total Sales</span>
-                                <span className="badge bg-white text-black border-0">Last 4 Month</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-xl-2 col-xxl-3 col-sm-4">
-                    <div className="card crm-cart bg-primary border-0">
-                        <div className="card-header border-0 pb-0">
-                            <span className="text-white fs-16">+34%<i className="fa-solid fa-chevron-up ms-1"></i></span>
-                            <div className="icon-box bg-white">
-                                {SVGICON.trolly}
-                            </div>
-                        </div>
-                        <div className="card-body">
-                            <div className="crm-cart-data">
-                                <p className="text-white">256k</p>
-                                <span className="d-block mb-3 text-white">Total Orders</span>
-                                <span className="badge bg-white text-black border-0">Last 6 Month</span>
-                            </div>
-                        </div>
-                    </div>
-                
-                </div>		
-                <div className="col-xl-2 col-xxl-3 col-sm-4 clm-chart">
-                    <div className="card crm-cart">
-                        <div className="card-header border-0 pb-0">
-                            <div>
-                                <h4 className="mb-0">$5,655<small className="text-danger ms-2">-33%</small></h4>
-                                <span className="d-block">Total Profit</span>
-                            </div>	
-                        </div>
-                        <div className="card-body custome-tooltip">
-                            <CrmColumnChart />
-                        </div>
-                    </div>
-                </div>	
-                <div className="col-xl-2 col-xxl-3 col-sm-4">
-                    <div className="card crm-cart">
-                        <div className="card-header border-0 pb-0">
-                            <div>
-                                <h4 className="mb-0">$5,586<small className="text-success ms-2">+59%</small></h4>
-                                <span className="d-block">Total Growth</span>
-                            </div>	
-                        </div>
-                        <div className="card-body d-flex justify-content-center pt-2">
-                            <div id="AllProject" className="ms-0">
-                                <DounutProject />
-                            </div>
-                           
-                        </div>
-                    </div>
-                </div>
-                <div className="col-xl-4">
-                    <div className="card">
-                        <div className="card-header border-0">
-                            <h4 className="heading mb-0">Organic Traffic</h4>
-                        </div>
-                        <div className="card-body pt-0 custome-tooltip">
-                            <div className="d-flex justify-content-center">                                
-                                <TrafficDonutChart />
-                            </div>
-                            <ul className="lang-chart">
-                                {groupBlog.map((item, index)=>(
-                                    <li key={index}><i className="fa-sharp fa-regular fa-circle-dot"></i>{item.title}</li>
-                                ))}   
-                                
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-xl-8">
-                    <div className="card overflow-hidden">
-                        <div className="card-header border-0">
-                            <div>
-                                <h4 className="heading mb-0">Project Timeline</h4>
-                                <span>Total 582 Projects Completed</span>
-                            </div>	
-                        </div>
-                        <div className="card-body py-0 pe-0 ">
-                            <div className="row">
-                                <div className="col-xl-9 col-xxl-8 col-md-8">                                    
-                                    <CrmTimelineChart />
-                                </div>
-                                <div className="col-xl-3 col-xxl-4 col-md-4 c-line">
-                                    <div className="crm-p-list">
-                                        <div>
-                                            <h4 className="heading mb-0">Project List</h4>
-                                            <span>4 Running Project</span>
+          <div className="row">
+                    {cardBlog.map((item, ind)=>(
+                        <div className="col-xl-3 col-sm-6" key={ind}>
+                            <div className="card">
+                                <div className="card-body">
+                                    <div className="d-flex align-items-center justify-content-between">
+                                        <div className={`icon-box icon-box-lg rounded-circle bg-${item.changetheme}-light`} >
+                                            {item.svg}               
                                         </div>
-                                    </div>	
-                                    <div className="dz-scroll project-scroll">
-                                        {projectList.map((item, index)=>(                                        
-                                            <div className="p-list" key={index}>                                                
-                                                {item.iconbox ? 
-                                                    <div className="icon-box bg-info-light">   
-                                                        {SVGICON.Worldweb}
-                                                    </div>
-                                                    :
-                                                    <div className={`icon-box bg-${item.bg}-light`}>
-                                                        <i className={item.icon} />
-                                                    </div>
-                                                }
-                                                
-                                                <div className="ms-2">
-                                                    <h6 className="mb-0">{item.title}</h6>
-                                                    <span>Task {item.number1}/{item.number2}</span>
-                                                </div>
-                                            </div>
-                                        ))}
+                                        <div className="total-projects ms-3">
+                                            <h3 className={`count text-${item.changetheme}`}>{item.number}k</h3> 
+                                            <span>{item.title}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    ))}
+                    <div className="col-xl-4 col-lg-5">
+				
+					</div>
+                    
+                </div>
+                <div className="row">
+                <div className="col-xl-6">
+                    <div className="row">
+                        <div className="col-xl-12">
+                            <div className="card">
+                                <div className="card-header border-0">
+                                    <div>
+                                        <h4 className="heading mb-0">Steel Price Insights</h4>
+                                        <span>Overview of the last 30 days.</span>
+                                    </div>
+                                </div>
+                                <div className="card-body pb-0 pe-2 pt-0 custome-tooltip">
+                                    <div className="d-flex align-items-center justify-content-between flex-wrap">
+                                        <div>
+                                            <h4>1.6</h4>
+                                            <span className="text-danger">
+                                                <i className="fa-solid fa-arrow-down"></i>
+                                                % 52.36 <small className="text-black">This Week</small>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <h4>269.89</h4>
+                                            <span className="text-success">
+                                                <i className="fa-solid fa-arrow-up"></i>
+                                                % 15.36 <small className="text-black">This month</small>
+                                            </span>
+                                        </div>   
+                                        {/* <SalesActiveBar />                                      */}
+                                        <SalesAvgArea />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/* {
+                            coloumnBlog.map((item, ind)=>(
+                                <div className="col-xl-6 col-sm-6" key={ind}>
+                                    <div className="card overflow-hidden">
+                                        <div className="card-header border-0">
+                                            <h4 className="heading mb-0">Avg Subscriptions</h4>
+                                        </div>
+                                        <div className="card-body d-flex justify-content-between pb-0 pe-0 pt-0">
+                                            <div>
+                                                <h4>15,369.59</h4>
+                                                <span className={`text-${item.bg}`}>
+                                                    <i className="fa-solid fa-arrow-down" /> {" "}
+                                                    % 52.36 <small className="text-black">since last month</small>
+                                                </span>
+                                            </div>                                    
+                                            {item.charts}                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        }                         */}
                     </div>
                 </div>
+                <div className="col-xl-6">
+                <div className="card">
+                        <div className="card-header border-0">
+                            <h4 className="heading mb-0">Steel Price overview</h4>
+                        </div>
+                        <div className="card-body custome-tooltip">
+                        <ApexLine />               
+                            {/* <SalesStatisticsArea /> */}
+                        </div>
+                    </div>
+                </div>
+                </div>
+            <div className="row">
+            
+                <div className="col-xl-4  col-lg-6">
+                    {/* notification part */}
+            <div className="card pb-0">
+              <div className="card-header border-0 pb-0">
+                <h4 className="card-title">Notifications </h4>
+              </div>
+              <div className="card-body">
+                <div
+                  style={{ height: "370px" }}
+                  id="DZ_W_Todo2"
+                  className="widget-media dz-scroll height370  ps--active-y"
+                >
+                  <ul className="timeline">
+                    <li>
+                      <div className="timeline-panel">
+                        {/* <div className="media me-2">
+                          <img  alt="" width="50"  />
+                        </div> */}
+                        <div className="media-body">
+                          <h5 className="mb-1">Notification 1</h5>
+                          <small className="d-block">
+                            29 July 2022 - 02:26 PM
+                          </small>
+                        </div>
+                        <Dropdown className="dropdown">
+                          <Dropdown.Toggle
+                            variant="primary light"
+                            className=" i-false p-0 sharp"
+                          >
+                            <svg
+                              width="18px"
+                              height="18px"
+                              viewBox="0 0 24 24"
+                              version="1.1"
+                            >
+                              <g
+                                stroke="none"
+                                strokeWidth="1"
+                                fill="none"
+                                fillRule="evenodd"
+                              >
+                                <rect x="0" y="0" width="24" height="24" />
+                                <circle fill="#000000" cx="5" cy="12" r="2" />
+                                <circle fill="#000000" cx="12" cy="12" r="2" />
+                                <circle fill="#000000" cx="19" cy="12" r="2" />
+                              </g>
+                            </svg>
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu className="dropdown-menu">
+                           
+                            <Dropdown.Item
+                              className="dropdown-item"
+                              to="/widget-basic"
+                            >
+                              Delete
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="timeline-panel">
+                    
+                        <div className="media-body">
+                          <h5 className="mb-1">
+                            notification 2{" "}
+                            <span className="badge badge-warning">Warning</span>
+                          </h5>
+                          <small className="d-block">
+                            29 July 2022 - 02:26 PM
+                          </small>
+                        </div>
+                        <Dropdown className="dropdown">
+                          <Dropdown.Toggle
+                            variant=" light"
+                            className=" btn-info i-false p-0 sharp"
+                          >
+                            <svg
+                              width="18px"
+                              height="18px"
+                              viewBox="0 0 24 24"
+                              version="1.1"
+                            >
+                              <g
+                                stroke="none"
+                                strokeWidth="1"
+                                fill="none"
+                                fillRule="evenodd"
+                              >
+                                <rect x="0" y="0" width="24" height="24" />
+                                <circle fill="#000000" cx="5" cy="12" r="2" />
+                                <circle fill="#000000" cx="12" cy="12" r="2" />
+                                <circle fill="#000000" cx="19" cy="12" r="2" />
+                              </g>
+                            </svg>
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu className="dropdown-menu">
+                           
+                            <Dropdown.Item
+                              className="dropdown-item"
+                              to="/widget-basic"
+                            >
+                              Delete
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="timeline-panel">
+                       
+                        <div className="media-body">
+                          <h5 className="mb-1">notification 3</h5>
+                          <small className="d-block">
+                            29 July 2022 - 02:26 PM
+                          </small>
+                        </div>
+                        <Dropdown className="dropdown">
+                          <Dropdown.Toggle
+                            variant=" light"
+                            className=" btn-success i-false p-0 sharp"
+                          >
+                            <svg
+                              width="18px"
+                              height="18px"
+                              viewBox="0 0 24 24"
+                              version="1.1"
+                            >
+                              <g
+                                stroke="none"
+                                strokeWidth="1"
+                                fill="none"
+                                fillRule="evenodd"
+                              >
+                                <rect x="0" y="0" width="24" height="24" />
+                                <circle fill="#000000" cx="5" cy="12" r="2" />
+                                <circle fill="#000000" cx="12" cy="12" r="2" />
+                                <circle fill="#000000" cx="19" cy="12" r="2" />
+                              </g>
+                            </svg>
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu className="dropdown-menu">
+                           
+                            <Dropdown.Item
+                              className="dropdown-item"
+                              to="/widget-basic"
+                            >
+                              Delete
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="timeline-panel">
+                       
+                        <div className="media-body">
+                          <h5 className="mb-1">
+                          notification 2{" "}
+                            <span className="badge light badge-danger">
+                              Danger
+                            </span>
+                          </h5>
+                          <small className="d-block">
+                            29 July 2022 - 02:26 PM
+                          </small>
+                        </div>
+                        <Dropdown className="dropdown">
+                          <Dropdown.Toggle
+                            variant="primary light"
+                            className=" i-false p-0 sharp"
+                          >
+                            <svg
+                              width="18px"
+                              height="18px"
+                              viewBox="0 0 24 24"
+                              version="1.1"
+                            >
+                              <g
+                                stroke="none"
+                                strokeWidth="1"
+                                fill="none"
+                                fillRule="evenodd"
+                              >
+                                <rect x="0" y="0" width="24" height="24" />
+                                <circle fill="#000000" cx="5" cy="12" r="2" />
+                                <circle fill="#000000" cx="12" cy="12" r="2" />
+                                <circle fill="#000000" cx="19" cy="12" r="2" />
+                              </g>
+                            </svg>
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu className="dropdown-menu">
+                           
+                            <Dropdown.Item
+                              className="dropdown-item"
+                              to="/widget-basic"
+                            >
+                              Delete
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="timeline-panel">
+                        
+                        <div className="media-body">
+                          <h5 className="mb-1">
+                            notification 4{" "}
+                            <span className="badge light badge-success">
+                              Success
+                            </span>
+                          </h5>
+                          <small className="d-block">
+                            29 July 2022 - 02:26 PM
+                          </small>
+                        </div>
+                        <Dropdown className="dropdown">
+                          <Dropdown.Toggle
+                            variant=" light"
+                            className="btn-danger i-false p-0 sharp"
+                          >
+                            <svg
+                              width="18px"
+                              height="18px"
+                              viewBox="0 0 24 24"
+                              version="1.1"
+                            >
+                              <g
+                                stroke="none"
+                                strokeWidth="1"
+                                fill="none"
+                                fillRule="evenodd"
+                              >
+                                <rect x="0" y="0" width="24" height="24" />
+                                <circle fill="#000000" cx="5" cy="12" r="2" />
+                                <circle fill="#000000" cx="12" cy="12" r="2" />
+                                <circle fill="#000000" cx="19" cy="12" r="2" />
+                              </g>
+                            </svg>
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu className="dropdown-menu">
+                            
+                            <Dropdown.Item
+                              className="dropdown-item"
+                              to="/widget-basic"
+                            >
+                              Delete
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="timeline-panel">
+                       
+                        <div className="media-body">
+                          <h5 className="mb-1">
+                           notification 5{" "}
+                            <span className="badge light badge-success">
+                              Success
+                            </span>
+                          </h5>
+                          <small className="d-block">
+                            29 July 2022 - 02:26 PM
+                          </small>
+                        </div>
+                        <Dropdown className="dropdown">
+                          <Dropdown.Toggle
+                            variant="primary light"
+                            className=" i-false p-0 sharp"
+                          >
+                            <svg
+                              width="18px"
+                              height="18px"
+                              viewBox="0 0 24 24"
+                              version="1.1"
+                            >
+                              <g
+                                stroke="none"
+                                strokeWidth="1"
+                                fill="none"
+                                fillRule="evenodd"
+                              >
+                                <rect x="0" y="0" width="24" height="24" />
+                                <circle fill="#000000" cx="5" cy="12" r="2" />
+                                <circle fill="#000000" cx="12" cy="12" r="2" />
+                                <circle fill="#000000" cx="19" cy="12" r="2" />
+                              </g>
+                            </svg>
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu className="dropdown-menu">
+                            
+                            <Dropdown.Item
+                              className="dropdown-item"
+                              to="/widget-basic"
+                            >
+                              Delete
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+                <div className="col-xl-8 col-lg-7">
+                        <ProjectOverviewTab height={350} />
+                    </div>
+{/*  line charts  */}
+            
+                <div className="col-xl-12">
+                    <div className="row">
+                      
+                        <div className="col-xl-6">		
+                            <div className="card">
+                            <div className="card-header border-0">
+                            <h4 className="heading mb-0">Labor Productivity Overview</h4>
+                        </div>
+                                <div className="card-body p-0">
+                                    <ApexLine />          
+                                </div>            
+                            </div>            
+                        </div>  
+                        <div className="col-xl-6">		
+                            <div className="card">
+                            <div className="card-header border-0">
+                            <h4 className="heading mb-0">Sales Lead time variabilty</h4>
+                        </div>
+                                <div className="card-body p-0">
+                                    <ApexLine />          
+                                </div>            
+                            </div>            
+                        </div>    
+                        
+                    </div>
+                </div>
+           
+            {/* end of line chart */}
                 <div className="col-xl-4 col-md-6">
                     <div className="card">
                         <div className="card-header border-0">
-                            <h4 className="heading mb-0">Monthly Overview</h4>
+                            <h4 className="heading mb-0">Inventory Turnover rate</h4>
                         </div>
                         <div className="card-body py-0 custome-tooltip">
-                            <CrmMarketArea />
-                            <div>
-                                <h4 className="mb-0">80%</h4>
-                                <p>Your sales performance is 49% 😀 better compared to last week</p>
-                            </div>
+                        <BarChart1 />
+                            
                         </div>
-                        <div className="card-footer border-0 pt-0">
-                            <Link to={"#"} className="btn btn-primary btn-block">View Details</Link>
-                        </div>
+                       
                     </div>
                 </div>
+                {/* <Col xl={6} lg={6}>
+            <Card>
+              <Card.Header>
+                <h4 className="card-title">Line</h4>
+              </Card.Header>
+              <Card.Body>
+                <ApexLine />
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col xl={6} lg={6}>
+            <Card>
+              <Card.Header> 
+                <h4 className="card-title">Line</h4>
+              </Card.Header>
+              <Card.Body>
+              <ApexLine />
+              </Card.Body>
+            </Card>
+          </Col> */}
                 <div className="col-xl-4 col-md-6">
-                    <div className="card">
+                <div className="card">
                         <div className="card-header border-0">
-                            <h4 className="heading mb-0">Social Networking</h4>
+                            <h4 className="heading mb-0">Labor Productivity</h4>
                         </div>
-                        <div className="card-body py-0 pb-3">
-                            <div className="mb-3">
-                                <div className="d-flex align-items-center">
-                                <h4 className="mb-0">26,368</h4>
-                                <span className="text-success font-w600 ms-2">
-                                    <i className="mdi mdi-menu-up"></i>
-                                    <small>62%</small>
-                                </span>
-                                </div>
-                                <small>Last 2 Year Visits</small>
-                            </div>
-                            <ul className="sociallinks">
-                                {netwrokBlog.map((item, ind)=>(
-                                    <li className="d-flex" key={ind}>
-                                        <div className="icon">
-                                            <img src={item.image} className="icon-box" alt="" />
-                                        </div>
-                                        <div className="d-flex flex-wrap align-items-center justify-content-between w-100">
-                                            <div className="ms-2">
-                                                <h6 className="mb-0">{item.title}</h6>
-                                                <small>Social Media</small>
-                                            </div>
-                                            <div className="d-flex align-items-center">
-                                                <span className="font-w500 text-primary">{item.price}</span>
-                                                <span className={`badge border-0 ms-2 badge-${item.bg}`}>{item.percent}%</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>   
-                        </div>   
+                        <div className="card-body py-0 custome-tooltip">
+                        <BarChart1 />
+                            
+                        </div>
+                       
                     </div>    
                 </div>
                 <div className="col-xl-4 col-md-6">
-                    <div className="card">
+                <div className="card">
                         <div className="card-header border-0">
-                            <h4 className="heading mb-0">Yearly Income</h4>
+                            <h4 className="heading mb-0">Customer satisfaction index</h4>
                         </div>
-                        <div className="card-body custome-tooltip">                         
-                            <CrmYearlyIncome  height={250}/>
-                            <p className="mt-4 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the </p>
+                        <div className="card-body py-0 custome-tooltip">
+                        <BarChart1 />
+                            
                         </div>
+                       
                     </div>
                 </div>
                 <div className="col-xl-4 col-md-6">
@@ -280,65 +658,54 @@ const Crm = () => {
                             <h4 className="heading mb-0">Meeting Plane</h4>
                         </div>
                         <div className="card-body">
-                            <ul className="sociallinks">
-                                {meetingList.map((item, ind)=>(
-                                    <li className="d-flex" key={ind}>
-                                        <div className="icon">
-                                            <img src={item.image} className="avatar avatar-xl" alt="" />
-                                        </div>
-                                        <div className="d-flex flex-wrap align-items-center justify-content-between w-100">
-                                            <div className="ms-2">
-                                                <h6 className="mb-0">{item.title}</h6>
-                                                <small><i className="fa-solid fa-calendar-days me-2"></i><span>21 Jul | 08:20-10:30</span></small>
-                                            </div>
-                                            <span className={`badge border-0 ms-2 badge-${item.bg}`}>{item.status}</span>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
+                        <GaugeChartComponent />
                         </div>        
                     </div> 
                 </div>
                 <div className="col-xl-4 col-md-6">
                     <div className="card">
                         <div className="card-header border-0">
-                            <h4 className="heading mb-0">External Data</h4>
+                            <h4 className="heading mb-0">Meeting Plane</h4>
                         </div>
-                        <div className="card-body custome-tooltip pb-0">
-                            <ul className="crm-ads-list">
-                                <li>
-                                    <div className="dots-crm">
-                                        <span className="dots bg-primary"></span>
-                                        <h6>Google Ads</h6>
-                                    </div>	
-                                    <span>$512k</span>
-                                    <h6>83%<i className="fa-solid fa-chevron-up ms-2 text-primary"></i></h6>
-                                </li>
-                                <li>
-                                    <div className="dots-crm">
-                                        <span className="dots bg-secondary"></span>
-                                        <h6>Fb Analytics</h6>
-                                    </div>
-                                    <span>$86.2k</span>
-                                    <h6>58%<i className="fa-solid fa-chevron-down ms-2 text-secondary"></i></h6>
-                                </li>
-                                <li>
-                                    <div className="dots-crm">
-                                        <span className="dots bg-info"></span>
-                                        <h6>Dribble User</h6>
-                                    </div>	
-                                    <span>$45.2k</span>
-                                    <h6>58%<i className="fa-solid fa-chevron-down ms-2 text-info"></i></h6>
-                                </li>
-                            </ul>
-                            <CrmExtranalChart />
-                        </div>
-                    </div>
+                        <div className="card-body">
+                        <GaugeChartComponent />
+                        </div>        
+                    </div> 
                 </div>
                 <div className="col-xl-4 col-md-6">
                     <div className="card">
                         <div className="card-header border-0">
-                            <h4 className="heading mb-0">Payment History</h4>
+                            <h4 className="heading mb-0">Supplier Diversification Index</h4>
+                        </div>
+                        <div className="card-body">
+                        <GaugeChartComponent />
+                        </div>        
+                    </div> 
+                </div>
+                 <div className="col-xl-4 col-md-6">
+                    <div className="card">
+                        <div className="card-header border-0">
+                            <h4 className="heading mb-0">Inventory Turnover rate</h4>
+                        </div>
+                        <div className="card-body">
+                        <GaugeChartComponent />
+                        </div>        
+                    </div> 
+                </div>
+                <div className="col-xl-4 col-md-6">
+                    <div className="card">
+                        <div className="card-header border-0">
+                            <h4 className="heading mb-0">Sales Lead time variability</h4>
+                        </div>
+                        <div className="card-body">
+                        <GaugeChartComponent />
+                        </div>        
+                    </div> 
+                </div>
+                <div className="col-xl-4 col-md-6">
+                    <div className="card">
+                        <div className="card-header border-0">
+                            <h4 className="heading mb-0">Supllier diverstification</h4>
                         </div>
                         <div className="card-body p-0">
                             <div className="table-responsive payment-tbl">
@@ -370,6 +737,145 @@ const Crm = () => {
                         </div>
                     </div>
                 </div>
+                <div className="container-fluid">
+            <div className="row">
+                <div className="col-xl-12">
+                    <div className="row">
+                      
+                        {/* <div className="col-xl-6">		
+                            <div className="card">
+                                <div className="card-body p-0">
+                                    <ProductSellerTable />          
+                                </div>            
+                            </div>            
+                        </div>   */}
+                        {/* <div className="col-xl-6">
+                            <div className="card">
+                                <div className="card-header border-0">
+                                    <h4 className="heading mb-0">Source of Revenue Generat</h4>
+                                </div>
+                                <div className="card-body p-0">
+                                    <div className="table-responsive active-projects">
+                                        <table id="projects-tbl3" className="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>SOURCE</th>
+                                                    <th>VISITORS</th>
+                                                    <th>PAGE VIEW</th>
+                                                    <th>REVENUE</th>
+                                                    <th>TRENDING</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {sourceTable.map((item, ind)=>(
+                                                    <tr key={ind}>
+                                                        <td>
+                                                            <div className="d-flex align-items-center">
+                                                                <div className={`icon-box icon-box-sm bg-${item.bg}`}>
+                                                                    <i className={` ${item.icon} text-white`} />
+                                                                </div>
+                                                                <p className="mb-0 ms-2 font-w500">{item.name}</p>	
+                                                            </div>
+                                                        </td>	
+                                                        <td>{item.visit}</td>
+                                                        <td>{item.page}</td>
+                                                        <td>${item.revenue}</td>
+                                                        <td>
+                                                            <div className="progress">
+                                                                <div className={`progress-bar bg-${item.bg}`} style={{width:item.trend, height:'5px', borderRadius:"4px"}}></div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                ))}                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>    */}
+                        {/* <div className="col-xl-4">
+                            <div className="card">
+                                <div className="card-header border-0">
+                                    <h4 className="heading mb-0">New Product</h4>
+                                </div>
+                                <div className="card-body p-0">
+                                    <div className="table-responsive active-projects">
+                                        <table id="projects-tbl4" className="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>PRDUCTS NAME</th>
+                                                    <th>PRICE</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {newproductList.map((item, ind)=>(
+                                                    <tr key={ind}>
+                                                        <td>
+                                                            <div className="products">
+                                                                <img src={item.image} className="avatar avatar-sm" alt="" />
+                                                                <div>
+                                                                    <h6><Link to={"#"}>{item.name}</Link></h6>
+                                                                    <span>24 Apr 2021</span>	
+                                                                </div>	
+                                                            </div>
+                                                        </td>	
+                                                        <td>${item.price}</td>
+                                                    </tr>  
+                                                ))}
+                                            </tbody>     
+                                        </table>
+                                    </div>    
+                                </div>    
+                            </div>    
+                        </div>     */}
+                        {/* <div className="col-xl-8">
+                                <div className="card">
+									<div className="card-header border-0">
+										<h4 className="heading mb-0">Top Selling Products</h4>
+									</div>
+									<div className="card-body p-0">
+										<div className="table-responsive active-projects">
+											<table id="projects-tbl2" className="table">
+												<thead>
+													<tr>
+														<th>PRDUCTS NAME</th>
+														<th>PRICE</th>
+														<th>SOLD</th>
+														<th>REVENUE</th>
+														
+													</tr>
+												</thead>
+												<tbody>
+                                                    {topsellinglist.map((item, ind)=>(
+                                                        <tr key={ind}>
+                                                            <td>
+                                                                <div className="products">
+                                                                    <img src={item.image} className="avatar avatar-sm" alt="" />
+                                                                    <div>
+                                                                        <h6><Link to={"#"}>{item.name}</Link></h6>
+                                                                        <span>24 Apr 2021</span>	
+                                                                    </div>	
+                                                                </div>
+                                                            </td>	
+                                                            <td>${item.price}</td>
+                                                            <td>{item.sold}</td>
+                                                            <td>${item.revenue}</td>
+                                                        </tr>
+                                                   ))}
+                                               </tbody>     
+                                            </table>
+                                        </div>    
+                                    </div>   
+                                </div>   
+                        </div> */}
+                    </div>
+                </div>
+            </div>
+
+          
+        </div>
             </div>
         </div>
     );

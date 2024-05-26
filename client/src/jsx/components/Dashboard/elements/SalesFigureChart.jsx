@@ -77,7 +77,7 @@ const  SalesFigureChart = () => {
         dataLabels: {
           enabled: false
         },
-        colors: ['#452b90','#ffd125'],
+        colors: ['#0190df','#ffd125'],
         title: {
           text: ''
         },

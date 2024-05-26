@@ -51,7 +51,7 @@ class TrafficDonutChart extends React.Component {
             legend: {
                 show: false,
             },
-            colors: ['#3AC977','#666cff', 'var(--primary)', 'var(--secondary)','#000'],
+            colors: ['#00c799','#666cff', 'var(--primary)', 'var(--secondary)','#000'],
             labels: ["Html", "CSS", "SCSS","C++","JavaScript"],
             dataLabels: {
                 enabled: false,

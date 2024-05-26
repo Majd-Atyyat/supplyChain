@@ -17,7 +17,17 @@ class ApexLine3 extends React.Component {
           height: 350,
           type: "area",
           toolbar: {
-            show: false,
+            show: true,
+            tools: {
+              download: false,
+              selection: true,
+              zoom: true,
+              zoomin: true,
+              zoomout: true,
+              pan: true,
+              reset: true
+            },
+            autoSelected: 'zoom'
           },
         },
         dataLabels: {

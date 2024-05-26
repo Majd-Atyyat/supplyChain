@@ -7,9 +7,9 @@ import { IMAGES, SVGICON } from '../../constant/theme';
 
 const tableDataBlog = [
     {image:IMAGES.osimg1, color:'#3A9B94', name:"Jobick", rate:'2.8',  subtitle:'Admin', price:'19', status:'Completed', badge:'success'},
-    {image:IMAGES.osimg2, color:'#FF5E5E', name:"Winkit", rate:'3.5', subtitle:'Front-End', price:'45', status:'Inprogress', badge:'primary'},
-    {image:IMAGES.osimg3, color:'#FF5E5E', name:"W3CRM", rate:'4.9', subtitle:'Admin', price:'78', status:'Completed', badge:'success'},
-    {image:IMAGES.osimg5, color:'#452b90', name:"JobZilla", rate:'1.7', subtitle:'WordPress', price:'32', status:'Inprogress', badge:'primary'}
+    {image:IMAGES.osimg2, color:'#da436c', name:"Winkit", rate:'3.5', subtitle:'Front-End', price:'45', status:'Inprogress', badge:'primary'},
+    {image:IMAGES.osimg3, color:'#da436c', name:"W3CRM", rate:'4.9', subtitle:'Admin', price:'78', status:'Completed', badge:'success'},
+    {image:IMAGES.osimg5, color:'#0190df', name:"JobZilla", rate:'1.7', subtitle:'WordPress', price:'32', status:'Inprogress', badge:'primary'}
 ];
 const Data = [8,4,5,9,5,3,5,7,5];
 

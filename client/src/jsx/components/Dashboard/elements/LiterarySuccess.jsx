@@ -6,17 +6,17 @@ import {
   } from "react-sparklines";
 
 const tableData = [
-    { color:'#FF5E5E', image: IMAGES.contact1, name:'Liam Risher', subtitle:'Span', avg:'66.99', view:'78.89', status:'Inprogress', badge:'primary'},
+    { color:'#da436c', image: IMAGES.contact1, name:'Liam Risher', subtitle:'Span', avg:'66.99', view:'78.89', status:'Inprogress', badge:'primary'},
     { color:'#3A9B94', image: IMAGES.contact2, name:'Oliver Noah', subtitle:'USA', avg:'78.89', view:'59.87', status:'Completed', badge:'success'},
-    { color:'#452b90', image: IMAGES.contact8, name:'Elijah James', subtitle:'NYC', avg:'59.87', view:'66.99', status:'Inprogress', badge:'primary'},
-    { color:'#FF5E5E', image: IMAGES.contact3, name:'Oliver Noah', subtitle:'USA', avg:'72.89', view:'78.89', status:'Completed', badge:'success'},
+    { color:'#0190df', image: IMAGES.contact8, name:'Elijah James', subtitle:'NYC', avg:'59.87', view:'66.99', status:'Inprogress', badge:'primary'},
+    { color:'#da436c', image: IMAGES.contact3, name:'Oliver Noah', subtitle:'USA', avg:'72.89', view:'78.89', status:'Completed', badge:'success'},
 ];
 
 const tableData2 = [
     { color:'#3A9B94', image: IMAGES.contact2, name:'Oliver Noah', subtitle:'USA', avg:'78.89', view:'59.87', status:'Completed', badge:'success'},
-    { color:'#FF5E5E', image: IMAGES.contact1, name:'Liam Risher', subtitle:'Span', avg:'66.99', view:'78.89', status:'Inprogress', badge:'primary'},
-    { color:'#FF5E5E', image: IMAGES.contact3, name:'Oliver Noah', subtitle:'USA', avg:'72.89', view:'78.89', status:'Completed', badge:'success'},
-    { color:'#452b90', image: IMAGES.contact8, name:'Elijah James', subtitle:'NYC', avg:'59.87', view:'66.99', status:'Inprogress', badge:'primary'},
+    { color:'#da436c', image: IMAGES.contact1, name:'Liam Risher', subtitle:'Span', avg:'66.99', view:'78.89', status:'Inprogress', badge:'primary'},
+    { color:'#da436c', image: IMAGES.contact3, name:'Oliver Noah', subtitle:'USA', avg:'72.89', view:'78.89', status:'Completed', badge:'success'},
+    { color:'#0190df', image: IMAGES.contact8, name:'Elijah James', subtitle:'NYC', avg:'59.87', view:'66.99', status:'Inprogress', badge:'primary'},
 ];
 const Data = [8,4,5,9,5,3,5,7,5];
 
